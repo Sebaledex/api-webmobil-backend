@@ -1,0 +1,9 @@
+npm i --save mongoose
+npm i --save mongoose-autopopulate
+npm i --save @nestjs/mongoose
+npm i --save @nestjs/config
+
+npm i class-validator class-transformer
+npm i bcrypt
+
+npm install @nest.js/swagger swagger-ui-express
