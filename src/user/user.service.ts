@@ -11,9 +11,10 @@ export class UserService {
 
     constructor(@InjectModel(USER.name) private readonly model: Model<IUser>) {}
 
-    async checkPassword(password:string, passwordDB:string):Promise<boolean>{
-      return await bcrypt.compare(password,passwordDB)
+    async checkPassword(password: string, passwordDB: string): Promise<boolean> {
+      return await bcrypt.compare(password, passwordDB);
     }
+  
 
 
     async findByUsername(username:string){

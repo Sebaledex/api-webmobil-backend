@@ -5,34 +5,33 @@ import { UserService } from 'src/user/user.service';
 
 @Injectable()
 export class AuthService {
-    
-    constructor(
-        private readonly jwtService: JwtService,
-        private readonly userService: UserService
-        ){}
-    
-    async validateUser(username:string, password: string):Promise<any>{
-        const user = await this.userService.findByUsername(username)
-        const isValidPassword = await this.userService.checkPassword(
-            password,
-            user.password,
-        )
+  constructor(
+    private readonly userService: UserService,
+    private readonly jwtService: JwtService,
+  ) {}
+  async validateUser(username: string, password: string): Promise<any> {
+    const user = await this.userService.findByUsername(username);
 
-        if(user && isValidPassword) return user;
+    const isValidPassword = await this.userService.checkPassword(
+      password,
+      user.password,
+    );
 
-        return null;
-    }
+    if (user && isValidPassword) return user;
 
-    async singIn(user:any){
-        const payload = {
-            username: user.username,
-            sub: user._id
+    return null;
+  }
 
-        }
-        return {access_token: this.jwtService.sign(payload)}
-    }
+  async signIn(user: any) {
+    const payload = {
+      username: user.username,
+      sub: user._id,
+    };
 
-    async singUp(userDTO: UserDTO){
-        return this.userService.create(userDTO)
-    }
-}   
+    return { access_token: this.jwtService.sign(payload) };
+  }
+
+  async signUp(userDTO: UserDTO) {
+    return this.userService.create(userDTO);
+  }
+}
