@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, Matches } from 'class-validator';
 
 export class UserDTO {
   @ApiProperty()
@@ -18,4 +18,12 @@ export class UserDTO {
   @IsNotEmpty()
   @IsString()
   readonly password: string;
+
+  @ApiProperty()
+  @IsString()
+  @Matches(/^(\d{2})\/(\d{2})\/(\d{4})$/, {
+    message: 'El formato de fecha debe ser dd/mm/yyyy',
+  })
+  readonly birthday: string;
+
 }

@@ -6,4 +6,8 @@ npm i --save @nestjs/config
 npm i class-validator class-transformer
 npm i bcrypt
 
-npm install @nest.js/swagger swagger-ui-express
+npm install @nestjs/swagger swagger-ui-express
+//dependencias jwt
+npm install @nestjs/jwt
+npm install passport-jwt
+npm install @nestjs/passport passport passport-local
